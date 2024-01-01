@@ -1,0 +1,315 @@
+[
+    {
+        "id": "9a169341.d148a",
+        "type": "tab",
+        "label": "cameraII",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f63122bb.6159a",
+        "type": "ui_button",
+        "z": "9a169341.d148a",
+        "name": "",
+        "group": "675036dd.603328",
+        "order": 4,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "refresh view",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "blue",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "20b67780.f66808",
+                "480ac62b.223df8"
+            ]
+        ]
+    },
+    {
+        "id": "480ac62b.223df8",
+        "type": "function",
+        "z": "9a169341.d148a",
+        "name": "",
+        "func": "var msg1;\nmsg1={payload:\"RESET\"};\n//msg1={reset:true};\n//msg1.reset = true;\n//msg1.payload ===\"RESET\";\nreturn msg1;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 100,
+        "y": 520,
+        "wires": [
+            [
+                "ae5d6d51.c03e8"
+            ]
+        ]
+    },
+    {
+        "id": "ae5d6d51.c03e8",
+        "type": "delay",
+        "z": "9a169341.d148a",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 120,
+        "y": 460,
+        "wires": [
+            [
+                "e0a79f96.8018c",
+                "20b67780.f66808"
+            ]
+        ]
+    },
+    {
+        "id": "20b67780.f66808",
+        "type": "trigger",
+        "z": "9a169341.d148a",
+        "name": "",
+        "op1": "",
+        "op2": "0",
+        "op1type": "date",
+        "op2type": "str",
+        "duration": "-1000",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "RESET",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 220,
+        "y": 180,
+        "wires": [
+            [
+                "82ff2bed.9adbf8"
+            ]
+        ]
+    },
+    {
+        "id": "4d889ab.e3fd464",
+        "type": "ui_template",
+        "z": "9a169341.d148a",
+        "group": "675036dd.603328",
+        "name": "",
+        "order": 1,
+        "width": "6",
+        "height": "4",
+        "format": "<div ng-bind-html=\"msg.payload\"></div>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 820,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e0a79f96.8018c",
+        "type": "delay",
+        "z": "9a169341.d148a",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 600,
+        "wires": [
+            [
+                "eb313d6.8a3cbc"
+            ]
+        ]
+    },
+    {
+        "id": "eb313d6.8a3cbc",
+        "type": "template",
+        "z": "9a169341.d148a",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<rect width=\"320px\" height=\"200px\" style=\"fill:black\">",
+        "output": "str",
+        "x": 500,
+        "y": 600,
+        "wires": [
+            [
+                "4a454ff7.546c8",
+                "4d889ab.e3fd464"
+            ]
+        ]
+    },
+    {
+        "id": "df905c63.29bdf",
+        "type": "inject",
+        "z": "9a169341.d148a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 350,
+        "y": 660,
+        "wires": [
+            [
+                "eb313d6.8a3cbc"
+            ]
+        ]
+    },
+    {
+        "id": "4a454ff7.546c8",
+        "type": "debug",
+        "z": "9a169341.d148a",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "82ff2bed.9adbf8",
+        "type": "http request",
+        "z": "9a169341.d148a",
+        "name": "Reolink Image HTTP request",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "http://192.168.16.45/cgi-bin/api.cgi?cmd=Snap&channel=0&rs=2&user=XXX&password=YYY",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "basic",
+        "x": 320,
+        "y": 300,
+        "wires": [
+            [
+                "d202e205.51c81",
+                "370f8fad.f9eb3"
+            ]
+        ]
+    },
+    {
+        "id": "d202e205.51c81",
+        "type": "base64",
+        "z": "9a169341.d148a",
+        "name": "",
+        "action": "str",
+        "property": "payload",
+        "x": 540,
+        "y": 300,
+        "wires": [
+            [
+                "789d8188.6895c"
+            ]
+        ]
+    },
+    {
+        "id": "370f8fad.f9eb3",
+        "type": "image",
+        "z": "9a169341.d148a",
+        "name": "",
+        "width": 160,
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": false,
+        "active": true,
+        "pass": false,
+        "outputs": 0,
+        "x": 340,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "789d8188.6895c",
+        "type": "template",
+        "z": "9a169341.d148a",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<img width=\"320px\" height=\"200px\" src=\"data:image/jpg;base64,{{{payload}}}\">\n",
+        "output": "str",
+        "x": 680,
+        "y": 300,
+        "wires": [
+            [
+                "4d889ab.e3fd464"
+            ]
+        ]
+    },
+    {
+        "id": "5a883f212f6c247c",
+        "type": "comment",
+        "z": "9a169341.d148a",
+        "name": "",
+        "info": "set right paramaters in this node",
+        "x": 320,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "675036dd.603328",
+        "type": "ui_group",
+        "name": "View Camera",
+        "tab": "ba15e503.cce1c8",
+        "order": 2,
+        "disp": false,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ba15e503.cce1c8",
+        "type": "ui_tab",
+        "name": "Bediening",
+        "icon": "fa-home",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
